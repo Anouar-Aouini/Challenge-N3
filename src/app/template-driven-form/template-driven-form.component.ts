@@ -8,7 +8,8 @@ import { User } from './user.module';
   styleUrls: ['./template-driven-form.component.css']
 })
 export class TemplateDrivenFormComponent implements OnInit {
-  public  userModel = new User("Anouar","anoirawini1571@gmail.com","type",123456789,"02/02/2020","code123456")
+  public userModel = new User("", "", "", "", "02/02/2020", "")
+  // public  userModel = new User("User","email@gmai.com","type","123456789","02/02/2020","code123456")
   constructor() { }
 
   ngOnInit(): void {

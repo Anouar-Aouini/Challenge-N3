@@ -2,59 +2,92 @@
   <br>
   <br>
   <hr>
-	<h1>Exercice 1 :</h1>
+	<h1>Exercice 1+2 :</h1>
 
 
 	<fieldset class="main">
 		<legend>Informations générales</legend>
-    <form #userForm= "ngForm" (ngSubmit)="onSubmit(userForm)" >
+    <form #userForm= "ngForm" novalidate (ngSubmit)="onSubmit(userForm)" >
 		Nom <input ngModel
      #name="ngModel"
       type="text"
       name="name"
-      class="nom"
-      [(ngModel)]="userModel.name">
+      class="form-control"
+      minlength="3"
+      [class.is-invalid]="name.invalid && name.touched"
+      [(ngModel)]="userModel.name"
+      required
+      ><br>
+      <div *ngIf="name.errors && (name.invalid || name.touched)">
+          <small class="text-danger" *ngIf="name.errors.required && name.touched">Name is required</small>
+          <small class="text-danger" *ngIf="name.errors.minlength">Name must be at least 3 digits</small>
+      </div>
 		<br>
-     Email <input
+     Email <input class="form-control"
            ngModel #email="ngModel"
            type="text"
            name="email"
-           [(ngModel)]="userModel.email">
+           pattern='^[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)*@[a-zA-Z0-9_\-]+(\.[a-zA-Z0-9_\-]+)*(\.[a-zA-Z]{2,6})$'
+           [class.is-invalid]="email.invalid && email.touched"
+           [(ngModel)]="userModel.email"
+           required
+           > <br>
+      <div *ngIf="email.errors && (email.invalid || email.touched)">
+          <small class="text-danger" *ngIf="email.errors.required && email.touched">Email is required</small>
+          <small class="text-danger" *ngIf="email.errors.pattern && email.touched">Invalid email</small>
+      </div>
 		<br>
      <fieldset>
        <legend>Informations de payement</legend>
         Type de carte
-        <input ngModel #cartType="ngModel"
+        <input ngModel
+         #cardType="ngModel"
         type="text"
-        name="cartType"
-        class="type"
-        [(ngModel)]="userModel.cartType">
+        name="cardType"
+        class="form-control"
+        [class.is-invalid]="cardType.invalid && cardType.touched"
+        [(ngModel)]="userModel.cardType"
+        required
+        >
+          <small class="text-danger"
+          [class.d-none]="cardType.valid || cardType.untouched"
+          >Card type is required</small>
 	      	<br>
          Numéro carte
          <input ngModel
-         #cartNumber="ngModel"
-         name="cartNumber"
+         #cardNumber="ngModel"
+         name="cardNumber"
+         minlength="16"
+         required
          type="text"
-         class="num"
-         [(ngModel)]="userModel.cartNumber">
+         class="form-control"
+         [class.is-invalid]="cardNumber.invalid && cardNumber.touched"
+         [(ngModel)]="userModel.cardNumber">
+        <div *ngIf="cardNumber.errors && (cardNumber.invalid || cardNumber.touched)">
+          <small class="text-danger" *ngIf="cardNumber.errors.required && cardNumber.touched">Card number is required</small>
+          <small class="text-danger" *ngIf="cardNumber.errors.minlength && cardNumber.touched">Card number must be at least 16 digits</small>
+        </div>
 	      	<br>
          Date expiration
          <input ngModel
          #date="ngModel"
          type="text"
+         class="form-control"
          name="date"
          [(ngModel)]="userModel.date">
 	      	<br>
-         Code
+          <div *ngIf="cardNumber.valid && cardType.valid">
+          Code
          <input ngModel
          #code="ngModel"
          type="text"
          name="code"
-         class="code"
+         class="form-control"
          [(ngModel)]="userModel.code">
+          </div>
        </fieldset>
     <br>
-    <button class="btn btn-primary" type="submit">Ajouter</button>
+    <button class="btn btn-primary" type="submit" [disabled]="userForm.form.invalid">Ajouter</button>
   </form>
 	</fieldset>
 	<br>
