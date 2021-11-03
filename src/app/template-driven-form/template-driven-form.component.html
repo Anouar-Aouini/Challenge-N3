@@ -1,0 +1,60 @@
+  <h1>Challenge N 3</h1>
+  <br>
+  <br>
+  <hr>
+	<h1>Exercice 1 :</h1>
+
+
+	<fieldset class="main">
+		<legend>Informations générales</legend>
+    <form #userForm= "ngForm" (ngSubmit)="onSubmit(userForm)" >
+		Nom <input ngModel
+     #name="ngModel"
+      type="text"
+      name="name"
+      class="nom"
+      [(ngModel)]="userModel.name">
+		<br>
+     Email <input
+           ngModel #email="ngModel"
+           type="text"
+           name="email"
+           [(ngModel)]="userModel.email">
+		<br>
+     <fieldset>
+       <legend>Informations de payement</legend>
+        Type de carte
+        <input ngModel #cartType="ngModel"
+        type="text"
+        name="cartType"
+        class="type"
+        [(ngModel)]="userModel.cartType">
+	      	<br>
+         Numéro carte
+         <input ngModel
+         #cartNumber="ngModel"
+         name="cartNumber"
+         type="text"
+         class="num"
+         [(ngModel)]="userModel.cartNumber">
+	      	<br>
+         Date expiration
+         <input ngModel
+         #date="ngModel"
+         type="text"
+         name="date"
+         [(ngModel)]="userModel.date">
+	      	<br>
+         Code
+         <input ngModel
+         #code="ngModel"
+         type="text"
+         name="code"
+         class="code"
+         [(ngModel)]="userModel.code">
+       </fieldset>
+    <br>
+    <button class="btn btn-primary" type="submit">Ajouter</button>
+  </form>
+	</fieldset>
+	<br>
