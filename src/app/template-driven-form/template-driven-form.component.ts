@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
+import {  NgForm } from '@angular/forms';
 import { User } from './user.module';
 
 @Component({
@@ -9,7 +9,7 @@ import { User } from './user.module';
 })
 export class TemplateDrivenFormComponent implements OnInit {
   public userModel = new User("", "", "", "", "02/02/2020", "")
-  // public  userModel = new User("User","email@gmai.com","type","123456789","02/02/2020","code123456")
+  // public  userModel = new User("User","email@gmai.com","type","123456789","02/02/2020","code123456");
   constructor() { }
 
   ngOnInit(): void {
@@ -18,5 +18,4 @@ export class TemplateDrivenFormComponent implements OnInit {
         console.log("NgForm :", userForm);
         console.log("NgForm.value :",userForm.value)
      }
-
 }

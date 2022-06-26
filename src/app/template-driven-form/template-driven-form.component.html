@@ -8,8 +8,9 @@
 	<fieldset class="main">
 		<legend>Informations générales</legend>
     <form #userForm= "ngForm" novalidate (ngSubmit)="onSubmit(userForm)" >
-		Nom <input ngModel
-     #name="ngModel"
+		Nom <input
+      ngModel
+      #name="ngModel"
       type="text"
       name="name"
       class="form-control"
